@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>User Guide · RooflinePlots.jl</title><meta name="title" content="User Guide · RooflinePlots.jl"/><meta property="og:title" content="User Guide · RooflinePlots.jl"/><meta property="twitter:title" content="User Guide · RooflinePlots.jl"/><meta name="description" content="Documentation for RooflinePlots.jl."/><meta property="og:description" content="Documentation for RooflinePlots.jl."/><meta property="twitter:description" content="Documentation for RooflinePlots.jl."/><meta property="og:url" content="https://qiUip.github.io/RooflinePlots.jl/usage/"/><meta property="twitter:url" content="https://qiUip.github.io/RooflinePlots.jl/usage/"/><link rel="canonical" href="https://qiUip.github.io/RooflinePlots.jl/usage/"/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../">RooflinePlots.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li class="is-active"><a class="tocitem" href>User Guide</a><ul class="internal"><li><a class="tocitem" href="#Command-Line-Usage"><span>Command Line Usage</span></a></li><li><a class="tocitem" href="#Command-Line-Options"><span>Command Line Options</span></a></li><li><a class="tocitem" href="#Julia-API"><span>Julia API</span></a></li><li><a class="tocitem" href="#Understanding-the-Output"><span>Understanding the Output</span></a></li><li><a class="tocitem" href="#Plots-Output-Formats"><span>Plots Output Formats</span></a></li><li><a class="tocitem" href="#Table-Output-Formats"><span>Table Output Formats</span></a></li><li><a class="tocitem" href="#Getting-Help"><span>Getting Help</span></a></li></ul></li><li><a class="tocitem" href="../python/">Python Interface Guide</a></li><li><a class="tocitem" href="../examples/">Examples</a></li><li><a class="tocitem" href="../api/">API Reference</a></li><li><a class="tocitem" href="../testing/">Testing</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>User Guide</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>User Guide</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/qiUip/RooflinePlots.jl/blob/main/docs/src/usage.md#" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="User-Guide"><a class="docs-heading-anchor" href="#User-Guide">User Guide</a><a id="User-Guide-1"></a><a class="docs-heading-anchor-permalink" href="#User-Guide" title="Permalink"></a></h1><p>This guide shows how to use RooflinePlots.jl to create roofline plots and analyze performance.</p><h2 id="Command-Line-Usage"><a class="docs-heading-anchor" href="#Command-Line-Usage">Command Line Usage</a><a id="Command-Line-Usage-1"></a><a class="docs-heading-anchor-permalink" href="#Command-Line-Usage" title="Permalink"></a></h2><p>The simplest way to use RooflinePlots.jl is via the command line interface.  </p><h3 id="Basic-Example"><a class="docs-heading-anchor" href="#Basic-Example">Basic Example</a><a id="Basic-Example-1"></a><a class="docs-heading-anchor-permalink" href="#Basic-Example" title="Permalink"></a></h3><pre><code class="language-bash hljs">./roofline.jl \
+    --peak-bw-DRAM=204.8 \
+    --measured-bw-DRAM=180.5 \
+    --peak-flops-DP=2150.4 \
+    --measured-flops-DP=1245.2 \
+    --cpu-name=&quot;AMD EPYC 7713&quot; \
+    --app-name=&quot;My Application&quot;</code></pre><h3 id="Multi-Level-Memory-Hierarchy"><a class="docs-heading-anchor" href="#Multi-Level-Memory-Hierarchy">Multi-Level Memory Hierarchy</a><a id="Multi-Level-Memory-Hierarchy-1"></a><a class="docs-heading-anchor-permalink" href="#Multi-Level-Memory-Hierarchy" title="Permalink"></a></h3><pre><code class="language-bash hljs">./roofline.jl \
+    --peak-bw-DRAM=96.42 \
+    --measured-bw-DRAM=21.89 \
+    --peak-bw-L3=480.0 \
+    --measured-bw-L3=125.0 \
+    --peak-bw-L2=1312.0 \
+    --measured-bw-L2=185.0 \
+    --peak-bw-L1=3200.0 \
+    --measured-bw-L1=890.0 \
+    --peak-flops-DP=1404.9 \
+    --measured-flops-DP=720.0 \
+    --num-cores=24 \
+    --topology=&quot;Single NUMA&quot; \
+    --cpu-name=&quot;Genoa @1.9GHz&quot; \
+    --app-name=&quot;Full Hierarchy&quot;</code></pre><h3 id="Multiple-Compute-Types"><a class="docs-heading-anchor" href="#Multiple-Compute-Types">Multiple Compute Types</a><a id="Multiple-Compute-Types-1"></a><a class="docs-heading-anchor-permalink" href="#Multiple-Compute-Types" title="Permalink"></a></h3><pre><code class="language-bash hljs">./roofline.jl \
+    --peak-bw-DRAM=102.4 \
+    --measured-bw-DRAM=78.3 \
+    --peak-flops-DP=1200.0 \
+    --measured-flops-DP=650.0 \
+    --peak-flops-SP=2400.0 \
+    --measured-flops-SP=1280.0 \
+    --peak-flops-DP_AVX=1920.0 \
+    --measured-flops-DP_AVX=1050.0 \
+    --peak-flops-SP_AVX=3840.0 \
+    --measured-flops-SP_AVX=2100.0 \
+    --num-cores=16 \
+    --topology=&quot;Single Socket&quot; \
+    --cpu-name=&quot;AMD EPYC&quot; \
+    --app-name=&quot;Matrix Multiply&quot;</code></pre><h3 id="Combined-Measurements"><a class="docs-heading-anchor" href="#Combined-Measurements">Combined Measurements</a><a id="Combined-Measurements-1"></a><a class="docs-heading-anchor-permalink" href="#Combined-Measurements" title="Permalink"></a></h3><p>When hardware counters measure multiple compute types together:</p><pre><code class="language-bash hljs"># Specific types combined
+./roofline.jl \
+    --peak-bw-HBM=1200.0 \
+    --measured-bw-HBM=980.0 \
+    --peak-flops-FP32=19500.0 \
+    --peak-flops-TENSOR=156000.0 \
+    --measured-flops-FP32-TENSOR=145000.0 \
+    --num-cores=80 \
+    --topology=&quot;GPU&quot; \
+    --cpu-name=&quot;NVIDIA A100&quot; \
+    --app-name=&quot;Deep Learning&quot;
+
+# All types combined
+./roofline.jl \
+    --peak-bw-DRAM=102.4 \
+    --measured-bw-DRAM=78.3 \
+    --peak-flops-DP=1200.0 \
+    --peak-flops-SP=2400.0 \
+    --measured-flops=1850.0 \
+    --num-cores=16 \
+    --topology=&quot;Dual Socket&quot; \
+    --cpu-name=&quot;Intel Xeon&quot; \
+    --app-name=&quot;Mixed Precision&quot;</code></pre><h3 id="Custom-Colors"><a class="docs-heading-anchor" href="#Custom-Colors">Custom Colors</a><a id="Custom-Colors-1"></a><a class="docs-heading-anchor-permalink" href="#Custom-Colors" title="Permalink"></a></h3><pre><code class="language-bash hljs">./roofline.jl \
+    --peak-bw-DRAM=204.8 \
+    --measured-bw-DRAM=180.5 \
+    --peak-bw-L3=1200.0 \
+    --measured-bw-L3=950.0 \
+    --peak-flops-DP=2150.4 \
+    --measured-flops-DP=1245.2 \
+    --peak-flops-SP=4300.0 \
+    --measured-flops-SP=2500.0 \
+    --mem-colors=&quot;#3498DB,#2ECC71&quot; \
+    --compute-colors=&quot;orange,purple&quot;</code></pre><h3 id="Output-Options"><a class="docs-heading-anchor" href="#Output-Options">Output Options</a><a id="Output-Options-1"></a><a class="docs-heading-anchor-permalink" href="#Output-Options" title="Permalink"></a></h3><pre><code class="language-bash hljs">./roofline.jl \
+    --peak-bw-DRAM=204.8 \
+    --measured-bw-DRAM=180.5 \
+    --peak-flops-DP=2150.4 \
+    --measured-flops-DP=1245.2 \
+    --output=my_plot.png \
+    --table-format=markdown \
+    --save-table \
+    --quiet \
+    --hide-ridges \
+    --force-simple</code></pre><h2 id="Command-Line-Options"><a class="docs-heading-anchor" href="#Command-Line-Options">Command Line Options</a><a id="Command-Line-Options-1"></a><a class="docs-heading-anchor-permalink" href="#Command-Line-Options" title="Permalink"></a></h2><p>RooflinePlots.jl offers a flexible approach for defining arbitrary memory and compute types with the following command line options, meta-data to use for the plot labelling, and several output options to produce rooflines in a customised style.</p><h3 id="Memory-and-Compute-Specifications"><a class="docs-heading-anchor" href="#Memory-and-Compute-Specifications">Memory and Compute Specifications</a><a id="Memory-and-Compute-Specifications-1"></a><a class="docs-heading-anchor-permalink" href="#Memory-and-Compute-Specifications" title="Permalink"></a></h3><p><strong>Memory bandwidth</strong> (at least one required):</p><ul><li><code>--peak-bw-&lt;TYPE&gt;=&lt;value&gt;</code> - Peak bandwidth in GB/s</li><li><code>--measured-bw-&lt;TYPE&gt;=&lt;value&gt;</code> - Measured bandwidth in GB/s</li></ul><p>Examples: <code>--peak-bw-DRAM=204.8</code>, <code>--peak-bw-HBM=1200.0</code>, <code>--peak-bw-L3=480.0</code></p><p><strong>Compute performance</strong> (at least one required):</p><ul><li><code>--peak-flops-&lt;TYPE&gt;=&lt;value&gt;</code> - Peak performance in GFLOP/s</li><li><code>--measured-flops-&lt;TYPE&gt;=&lt;value&gt;</code> - Measured performance in GFLOP/s</li></ul><p>Examples: <code>--peak-flops-DP=2150.4</code>, <code>--peak-flops-TENSOR=156000.0</code></p><p><strong>Combined measurements</strong>:</p><ul><li><code>--measured-flops=&lt;value&gt;</code> - All compute types combined</li><li><code>--measured-flops-&lt;TYPE1&gt;-&lt;TYPE2&gt;=&lt;value&gt;</code> - Specific types combined</li></ul><p>Examples: <code>--measured-flops=720.0</code>, <code>--measured-flops-DP-SP=720.0</code></p><p><strong>Requirements</strong>:</p><ul><li>Each memory type needs both peak and measured values</li><li>Each compute peak needs either an individual measurement or inclusion in a combined measurement</li></ul><p><strong>Type naming</strong>: Avoid hyphens in type names (use underscores instead: <code>DP_AVX</code>, <code>FP32_TENSOR</code>)</p><h3 id="Metadata"><a class="docs-heading-anchor" href="#Metadata">Metadata</a><a id="Metadata-1"></a><a class="docs-heading-anchor-permalink" href="#Metadata" title="Permalink"></a></h3><ul><li><code>--num-cores=&lt;N&gt;</code> - Number of cores (default: omitted from filename)</li><li><code>--topology=&lt;string&gt;</code> - Topology description (default: &quot;Topology&quot;)</li><li><code>--cpu-name=&lt;string&gt;</code> - CPU/GPU model name (default: &quot;CPU&quot;)</li><li><code>--app-name=&lt;string&gt;</code> - Application name (default: &quot;Application&quot;)</li></ul><h3 id="Output-Control"><a class="docs-heading-anchor" href="#Output-Control">Output Control</a><a id="Output-Control-1"></a><a class="docs-heading-anchor-permalink" href="#Output-Control" title="Permalink"></a></h3><ul><li><code>--output=&lt;file&gt;</code>, <code>-o &lt;file&gt;</code> - Output filename (auto-generated if not specified)</li><li><code>--quiet</code>, <code>-q</code> - Suppress table output</li><li><code>--show</code>, <code>-s</code> - Display plot window</li><li><code>--hide-ridges</code> - Hide ridge point lines</li><li><code>--force-simple</code> - Force linear scaling</li><li><code>--table-format=&lt;fmt&gt;</code> - Table format: <code>ascii</code>, <code>org</code>, <code>markdown</code>, or <code>csv</code></li><li><code>--save-table</code> - Save table to file with appropriate extension</li><li><code>--plot-format=&lt;fmt&gt;</code> - Plot format: png, pdf, or svg (default: png)</li></ul><h3 id="Colors"><a class="docs-heading-anchor" href="#Colors">Colors</a><a id="Colors-1"></a><a class="docs-heading-anchor-permalink" href="#Colors" title="Permalink"></a></h3><ul><li><code>--mem-colors=&lt;colors&gt;</code> - Memory colors (comma-separated)</li><li><code>--compute-colors=&lt;colors&gt;</code> - Compute colors (comma-separated)</li></ul><p>Supported formats: color names (<code>red</code>, <code>blue</code>, <code>orange</code>) or hex codes (<code>#FF5733</code>, <code>#3498DB</code>)</p><p>All <a href="https://juliagraphics.github.io/Colors.jl/stable/namedcolors/">Julia named colors</a> are supported</p><h2 id="Julia-API"><a class="docs-heading-anchor" href="#Julia-API">Julia API</a><a id="Julia-API-1"></a><a class="docs-heading-anchor-permalink" href="#Julia-API" title="Permalink"></a></h2><p>As well as the command line options, RooflinePlots.jl can be used as a library with simple API for direct integration within other Julia programs.</p><h3 id="Basic-Example-2"><a class="docs-heading-anchor" href="#Basic-Example-2">Basic Example</a><a class="docs-heading-anchor-permalink" href="#Basic-Example-2" title="Permalink"></a></h3><pre><code class="language-julia hljs">using RooflinePlots
+
+memory_specs = Dict(&quot;DRAM&quot; =&gt; (peak=204.8, measured=180.5))
+compute_specs = Dict(&quot;DP&quot; =&gt; (peak=2150.4, measured=1245.2))
+
+params = RooflineParams(
+    memory_specs,
+    compute_specs,
+    nothing,  # combined_flops
+    [],       # combined_flops_groups
+    64,       # num_cores
+    &quot;Dual Socket&quot;,
+    &quot;AMD EPYC 7713&quot;,
+    &quot;My Application&quot;
+)
+
+config = params_to_config(params)
+plt = create_roofline_plot(config)
+savefig(plt, &quot;roofline.png&quot;)
+print_performance_table(config)</code></pre><h3 id="Hierarchical-Memory"><a class="docs-heading-anchor" href="#Hierarchical-Memory">Hierarchical Memory</a><a id="Hierarchical-Memory-1"></a><a class="docs-heading-anchor-permalink" href="#Hierarchical-Memory" title="Permalink"></a></h3><pre><code class="language-julia hljs">memory_specs = Dict(
+    &quot;DRAM&quot; =&gt; (peak=96.42, measured=21.89),
+    &quot;L3&quot;   =&gt; (peak=480.0, measured=125.0),
+    &quot;L2&quot;   =&gt; (peak=1312.0, measured=185.0),
+    &quot;L1&quot;   =&gt; (peak=3200.0, measured=890.0)
+)
+
+compute_specs = Dict(&quot;DP&quot; =&gt; (peak=1404.9, measured=720.0))
+
+params = RooflineParams(
+    memory_specs, compute_specs, nothing, [],
+    24, &quot;Single NUMA&quot;, &quot;Genoa @1.9GHz&quot;, &quot;TestApp&quot;
+)
+
+config = params_to_config(params)
+plt = create_roofline_plot(config)
+savefig(plt, &quot;hierarchical.png&quot;)</code></pre><h3 id="Multiple-Compute-Types-2"><a class="docs-heading-anchor" href="#Multiple-Compute-Types-2">Multiple Compute Types</a><a class="docs-heading-anchor-permalink" href="#Multiple-Compute-Types-2" title="Permalink"></a></h3><pre><code class="language-julia hljs">memory_specs = Dict(&quot;DRAM&quot; =&gt; (peak=102.4, measured=78.3))
+
+compute_specs = Dict(
+    &quot;DP&quot;     =&gt; (peak=1200.0, measured=650.0),
+    &quot;SP&quot;     =&gt; (peak=2400.0, measured=1280.0),
+    &quot;DP_AVX&quot; =&gt; (peak=1920.0, measured=1050.0),
+    &quot;SP_AVX&quot; =&gt; (peak=3840.0, measured=2100.0)
+)
+
+params = RooflineParams(
+    memory_specs, compute_specs, nothing, [],
+    16, &quot;Single Socket&quot;, &quot;AMD EPYC&quot;, &quot;Matrix Multiply&quot;
+)</code></pre><h3 id="Combined-Measurements-2"><a class="docs-heading-anchor" href="#Combined-Measurements-2">Combined Measurements</a><a class="docs-heading-anchor-permalink" href="#Combined-Measurements-2" title="Permalink"></a></h3><pre><code class="language-julia hljs">memory_specs = Dict(&quot;HBM&quot; =&gt; (peak=1200.0, measured=980.0))
+
+# Peak performance without individual measurements
+compute_specs = Dict(
+    &quot;FP32&quot;   =&gt; (peak=19500.0, measured=nothing),
+    &quot;TENSOR&quot; =&gt; (peak=156000.0, measured=nothing)
+)
+
+# Hardware counter measured both together
+combined_groups = [
+    ([&quot;FP32&quot;, &quot;TENSOR&quot;], 145000.0)
+]
+
+params = RooflineParams(
+    memory_specs, compute_specs, nothing, combined_groups,
+    80, &quot;GPU&quot;, &quot;NVIDIA A100&quot;, &quot;Deep Learning&quot;
+)</code></pre><h3 id="Custom-Colors-2"><a class="docs-heading-anchor" href="#Custom-Colors-2">Custom Colors</a><a class="docs-heading-anchor-permalink" href="#Custom-Colors-2" title="Permalink"></a></h3><pre><code class="language-julia hljs">memory_specs = Dict(
+    &quot;DRAM&quot; =&gt; (peak=204.8, measured=180.5),
+    &quot;L3&quot;   =&gt; (peak=1200.0, measured=950.0)
+)
+
+compute_specs = Dict(
+    &quot;DP&quot; =&gt; (peak=2150.4, measured=1245.2),
+    &quot;SP&quot; =&gt; (peak=4300.0, measured=2500.0)
+)
+
+params = RooflineParams(
+    memory_specs, compute_specs, nothing, [],
+    64, &quot;Dual Socket&quot;, &quot;AMD EPYC 7713&quot;, &quot;My Application&quot;
+)
+
+output_opts = OutputOptions(
+    mem_colors = [:cyan, :magenta],
+    compute_colors = [:orange, &quot;#FF5733&quot;]
+)
+
+config = params_to_config(params, output_opts)
+plt = create_roofline_plot(config)
+savefig(plt, &quot;custom_colors.png&quot;)</code></pre><h2 id="Understanding-the-Output"><a class="docs-heading-anchor" href="#Understanding-the-Output">Understanding the Output</a><a id="Understanding-the-Output-1"></a><a class="docs-heading-anchor-permalink" href="#Understanding-the-Output" title="Permalink"></a></h2><h3 id="Plot-Elements"><a class="docs-heading-anchor" href="#Plot-Elements">Plot Elements</a><a id="Plot-Elements-1"></a><a class="docs-heading-anchor-permalink" href="#Plot-Elements" title="Permalink"></a></h3><ul><li><strong>Diagonal lines</strong>: Memory bandwidth limits (slope = bandwidth)</li><li><strong>Horizontal lines</strong>: Compute performance ceilings</li><li><strong>Ridge points</strong>: Intersections where bottleneck transitions</li><li><strong>Markers</strong>: Measured performance points with circle fill color matching the memory level and stroke color matching the compute type (for multiple compute types)</li></ul><h3 id="Performance-Table"><a class="docs-heading-anchor" href="#Performance-Table">Performance Table</a><a id="Performance-Table-1"></a><a class="docs-heading-anchor-permalink" href="#Performance-Table" title="Permalink"></a></h3><p>Shows for each compute type:</p><ul><li>Measured performance as percentage of peak</li><li>Arithmetic intensity (FLOP/Byte) for each memory level</li><li>Identified bottleneck</li></ul><h3 id="Bottleneck-Types"><a class="docs-heading-anchor" href="#Bottleneck-Types">Bottleneck Types</a><a id="Bottleneck-Types-1"></a><a class="docs-heading-anchor-permalink" href="#Bottleneck-Types" title="Permalink"></a></h3><ul><li><strong>Memory-bound (COMPUTE/MEMORY)</strong>: Limited by a specific combination of compute throughput and memory bandwidth<ul><li>Example: &quot;Memory-bound (DP/DRAM)&quot;</li></ul></li><li><strong>Compute-bound (COMPUTE)</strong>: Limited by any compute throughput<ul><li>Example: &quot;Compute-bound&quot;</li></ul></li></ul><p><strong>Selection priority</strong>: Memory-bound bottleneck determination uses the highest measured compute type paired with the slowest memory level</p><h3 id="Plot-Modes"><a class="docs-heading-anchor" href="#Plot-Modes">Plot Modes</a><a id="Plot-Modes-1"></a><a class="docs-heading-anchor-permalink" href="#Plot-Modes" title="Permalink"></a></h3><p><strong>Simple mode</strong> (linear scales):</p><ul><li>Single memory level, or <code>--force-simple</code> flag</li><li>Linear x and y axes</li></ul><p><strong>Hierarchical mode</strong> (log-log scales):</p><ul><li>Multiple memory levels</li><li>Log-log scales with ridge points</li></ul><h2 id="Plots-Output-Formats"><a class="docs-heading-anchor" href="#Plots-Output-Formats">Plots Output Formats</a><a id="Plots-Output-Formats-1"></a><a class="docs-heading-anchor-permalink" href="#Plots-Output-Formats" title="Permalink"></a></h2><p>Plots can be saved in various formats for easy integration into documents.  </p><p>The format can be selected either by the extension of the filename when <code>--output</code> is selected, or with <code>--plot-format</code> when the automatic naming convention is used.</p><p><strong>Format Options</strong>:</p><ul><li><code>PNG</code></li><li><code>PDF</code></li><li><code>SVG</code></li></ul><h3 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h3><pre><code class="language-bash hljs"># Save plot as PNG (default)
+./roofline.jl --peak-flops-DP=200 --measured-flops-DP=150 \
+    --peak-bw-DRAM=100 --measured-bw-DRAM=80 \
+    --output=roofline.png
+
+# Save plot as PDF with the default output naming convention
+./roofline.jl --peak-flops-DP=200 --measured-flops-DP=150 \
+    --peak-bw-DRAM=100 --measured-bw-DRAM=80 \
+    --plot-format=pdf
+
+# Save plot as SVG using specified output name
+./roofline.jl --peak-flops-DP=200 --measured-flops-DP=150 \
+    --peak-bw-DRAM=100 --measured-bw-DRAM=80 \
+    --output=roofline.svg</code></pre><h2 id="Table-Output-Formats"><a class="docs-heading-anchor" href="#Table-Output-Formats">Table Output Formats</a><a id="Table-Output-Formats-1"></a><a class="docs-heading-anchor-permalink" href="#Table-Output-Formats" title="Permalink"></a></h2><p>Several formatting options are available for the analysis tables for easy integration into documents.</p><p><strong>Format Options</strong></p><ul><li><code>ascii</code> - Text table (<code>.dat</code> file)</li><li><code>markdown</code> - Markdown (<code>.md</code> file)</li><li><code>org</code> - Org-mode table (<code>.org</code> file)</li><li><code>csv</code> - Comma-separated values (<code>.csv</code> file)</li></ul><h3 id="Examples-2"><a class="docs-heading-anchor" href="#Examples-2">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-2" title="Permalink"></a></h3><pre><code class="language-bash hljs"># Print markdown table to console
+./roofline.jl --peak-flops-DP=200 --measured-flops-DP=150 \
+    --peak-bw-DRAM=100 --measured-bw-DRAM=80 \
+    --table-format=markdown
+
+# Save CSV table to file
+./roofline.jl --peak-flops-DP=200 --measured-flops-DP=150 \
+    --peak-bw-DRAM=100 --measured-bw-DRAM=80 \
+    --table-format=csv --save-table
+
+# Quiet mode with saved markdown table
+./roofline.jl --peak-flops-DP=200 --measured-flops-DP=150 \
+    --peak-bw-DRAM=100 --measured-bw-DRAM=80 \
+    --table-format=markdown --save-table --quiet</code></pre><h2 id="Getting-Help"><a class="docs-heading-anchor" href="#Getting-Help">Getting Help</a><a id="Getting-Help-1"></a><a class="docs-heading-anchor-permalink" href="#Getting-Help" title="Permalink"></a></h2><pre><code class="language-bash hljs"># Command line help
+./roofline.jl --help
+
+# Julia documentation
+julia&gt; using RooflinePlots
+julia&gt; ?RooflineParams
+julia&gt; ?create_roofline_plot</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><a class="docs-footer-nextpage" href="../python/">Python Interface Guide »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.16.0 on <span class="colophon-date" title="Saturday 15 November 2025 13:18">Saturday 15 November 2025</span>. Using Julia version 1.12.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
