@@ -1,0 +1,24 @@
+# Ignore generated example files
+# Examples are auto-generated during documentation builds
+examples/*.png
+examples/*.svg
+examples/*.pdf
+examples/*.dat
+examples/*.md
+examples/*.org
+
+# Keep the directory structure
+!examples/README.md
+!examples/combined_dp_sp.md
+!examples/combined_dp_sp.svg
+!examples/custom_colors_example.svg
+!examples/custom_combined_groups.md
+!examples/custom_combined_groups.svg
+!examples/custom_hbm_tensor.md
+!examples/custom_hbm_tensor.svg
+!examples/full_hierarchy.md
+!examples/full_hierarchy.svg
+!examples/hierarchical_l2_dram_dp_sp.md
+!examples/hierarchical_l2_dram_dp_sp.svg
+!examples/simple_dram_dp.md
+!examples/simple_dram_dp.svg

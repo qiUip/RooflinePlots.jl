@@ -1,0 +1,24 @@
+name = "RooflinePlots"
+uuid = "10e19d0d-6820-44c6-86f7-9a46cccd4b74"
+authors = ["Mashy D Green <mashy.green@ucl.ac.uk>"]
+version = "0.1.0"
+
+[deps]
+ArgParse = "c7e460c6-2fb9-53a9-8c5b-16f535851c63"
+JuliaFormatter = "98e50ef6-434e-11e9-1051-2b60c6c9e899"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+
+[compat]
+ArgParse = "1"
+JuliaFormatter = "2.2.0"
+Plots = "1"
+Printf = "1"
+Test = "1"
+julia = "1.6"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

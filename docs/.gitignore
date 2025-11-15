@@ -1,0 +1,9 @@
+# Ignore auto-generated examples
+src/examples/*.png
+src/examples/*.md
+
+# Ignore auto-generated examples.md (created by make.jl)
+src/examples.md
+
+# Keep the directory structure
+!src/examples/.gitkeep

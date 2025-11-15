@@ -1,0 +1,203 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Julia 1.10 - Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.10'
+
+      - uses: julia-actions/cache@v2
+
+      - uses: julia-actions/julia-buildpkg@v1
+
+      - name: Install TestReports for JUnit XML
+        run: julia --project=. -e 'using Pkg; Pkg.add("TestReports")'
+
+      - name: Run tests with TestReports
+        run: julia --project=. -e 'using TestReports; TestReports.test("RooflinePlots", logfilename="test-results.xml")'
+        env:
+          GKSwstype: "100"  # Disable GKS for plotting in CI
+
+      - name: Generate Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Test Results
+          path: test-results.xml
+          reporter: java-junit
+          fail-on-error: false
+
+  python-interface:
+    name: Python Interface Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.10'
+
+      - uses: julia-actions/cache@v2
+
+      - uses: julia-actions/julia-buildpkg@v1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache JuliaCall environment
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.julia/environments/pyjuliapkg
+            ~/.julia/packages
+            ~/.julia/compiled
+          key: ${{ runner.os }}-juliacall-v2-${{ hashFiles('**/Project.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-juliacall-v2-
+
+      - name: Install Python dependencies
+        run: pip install juliacall
+
+      - name: Run Python interface tests
+        run: python test/test_python_interface.py
+        env:
+          GKSwstype: "100"  # Disable GKS for plotting in CI
+
+  quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: '1'
+
+      - uses: julia-actions/cache@v2
+
+      - name: Install dependencies
+        run: |
+          julia --project -e '
+            using Pkg
+            Pkg.instantiate()
+            Pkg.add(["Aqua", "JuliaFormatter"])
+          '
+
+      - name: Run Aqua.jl
+        run: |
+          julia --project -e '
+            using Aqua, RooflinePlots
+            Aqua.test_all(RooflinePlots, ambiguities=false, stale_deps=false)
+          '
+
+      - name: Check formatting
+        run: |
+          julia --project -e '
+            using JuliaFormatter
+
+            println("Checking code formatting...")
+
+            # Collect all Julia files
+            all_julia_files = String[]
+            for (root, dirs, files) in walkdir(".")
+              # Skip hidden directories and build artifacts
+              filter!(d -> !startswith(d, ".") && d != "docs" && d != "build", dirs)
+              for file in files
+                if endswith(file, ".jl")
+                  push!(all_julia_files, joinpath(root, file))
+                end
+              end
+            end
+
+            # Check each file and collect detailed formatting issues
+            formatting_issues = []
+            for file in all_julia_files
+              original = read(file, String)
+              formatted = format_text(original)
+
+              if original != formatted
+                # Find differences
+                orig_lines = split(original, "\n")
+                fmt_lines = split(formatted, "\n")
+
+                diffs = []
+                max_diffs = 10  # Show first 10 differences per file
+
+                for (i, (orig, fmt)) in enumerate(zip(orig_lines, fmt_lines))
+                  if orig != fmt && length(diffs) < max_diffs
+                    push!(diffs, (i, orig, fmt))
+                  end
+                end
+
+                # Check if files have different number of lines
+                if length(orig_lines) != length(fmt_lines)
+                  push!(diffs, (:length, length(orig_lines), length(fmt_lines)))
+                end
+
+                push!(formatting_issues, (file, diffs))
+              end
+            end
+
+            if !isempty(formatting_issues)
+              println("\n❌ Formatting issues detected!\n")
+
+              for (file, diffs) in formatting_issues
+                println("📄 ", file)
+                println("=" ^ 80)
+
+                for diff in diffs
+                  if diff[1] == :length
+                    println("  ⚠️  Line count mismatch: ", diff[2], " → ", diff[3], " lines")
+                  else
+                    line_num, original_line, formatted_line = diff
+                    println("\n  Line ", line_num, ":")
+                    println("  ❌ ", original_line)
+                    println("  ✅ ", formatted_line)
+                  end
+                end
+
+                if length(diffs) >= 10
+                  println("\n  ... (showing first 10 differences)")
+                end
+                println()
+              end
+
+              println("\n" * "=" ^ 80)
+              println("To fix all formatting issues, run:")
+              println("  julia --project -e '\''using JuliaFormatter; format(\".\")'\''\n")
+              println("Or to ignore specific code blocks, use:")
+              println("  #! format: off")
+              println("  <code to ignore>")
+              println("  #! format: on\n")
+
+              error("Code formatting check failed")
+            else
+              println("✓ All files are properly formatted")
+            end
+          '
